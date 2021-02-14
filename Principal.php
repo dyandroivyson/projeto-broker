@@ -20,6 +20,7 @@ class Principal
         $arquivos = [];
         $linhas = [];
         $mensagens_aptas = [];
+        $mensagemUtils = new MensagemUtils();
 
         // Cria o diretório de entrada se não existir
         $dir_recebidos = __DIR__ . DIRECTORY_SEPARATOR . '1_recebidos';
@@ -88,7 +89,7 @@ class Principal
             $ddd_celular = $linha['DDD'] . $linha['CELULAR'];
             
             // Verificando DDD
-            if (!MensagemUtils::checaDdd($linha['DDD'])) {
+            if (!$mensagemUtils->checaDdd($linha['DDD'])) {
                 Utils::escreveMensagem(
                     'Mensagem ' . $linha['IDMENSAGEM'] . ' possui DDD invalido'
                 );
@@ -96,7 +97,7 @@ class Principal
             }
 
             // Verificando celular
-            if (!MensagemUtils::checaCelular($linha['CELULAR'])) {
+            if (!$mensagemUtils->checaCelular($linha['CELULAR'])) {
                 Utils::escreveMensagem(
                     'Mensagem ' . $linha['IDMENSAGEM'] . ' possui celular invalido'
                 );
@@ -104,7 +105,7 @@ class Principal
             }
 
             // Verificando Blacklist
-            if (!MensagemUtils::checaBlacklist($linha['DDD'], $linha['CELULAR'])) {
+            if (!$mensagemUtils->checaBlacklist($linha['DDD'], $linha['CELULAR'])) {
                 Utils::escreveMensagem(
                     'Mensagem ' . $linha['IDMENSAGEM'] . ' presente na blacklist'
                 );
@@ -112,7 +113,7 @@ class Principal
             }
 
             // Verificando Horário de envio da mensagem
-            if (!MensagemUtils::checaHorarioAgendamento($linha['HORARIO'])) {
+            if (!$mensagemUtils->checaHorarioAgendamento($linha['HORARIO'])) {
                 Utils::escreveMensagem(
                     'Mensagem ' . $linha['IDMENSAGEM'] 
                     . ' com horário de envio acima do limite permitido'
@@ -121,7 +122,7 @@ class Principal
             }
 
             // Verificando conteúdo da mensagem
-            if (!MensagemUtils::checaMensagem($linha['MENSAGEM'])) {
+            if (!$mensagemUtils->checaMensagem($linha['MENSAGEM'])) {
                 Utils::escreveMensagem(
                     'Mensagem ' . $linha['IDMENSAGEM'] 
                     . ' com quantidade de caracteres acima do limite permitido'
@@ -135,12 +136,12 @@ class Principal
         Utils::escreveMensagem('Ordenando mensagens');
 
         // Sanitarizando as mensagens
-        $mensagens = MensagemUtils::ordenaUnificaMensagens($mensagens_aptas);
+        $mensagens = $mensagemUtils->ordenaUnificaMensagens($mensagens_aptas);
 
         Utils::escreveMensagem('Convertendo mensagens');
 
         // Convertendo para o formato final
-        $mensagens_tratadas = MensagemUtils::converteMensagens($mensagens);
+        $mensagens_tratadas = $mensagemUtils->converteMensagens($mensagens);
 
         // Criando arquivo com mensagens válidas
         $arquivo_saida = date('dmY_his') . '.csv';

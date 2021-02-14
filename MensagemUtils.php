@@ -11,7 +11,7 @@ class MensagemUtils
      * @param  mixed $ddd
      * @return void
      */
-    public static function checaDdd($ddd)
+    public function checaDdd($ddd)
     {
         // Listando todos os DDDs brasileiros
         $todos_ddd = [
@@ -113,7 +113,7 @@ class MensagemUtils
      * @param  mixed $celular
      * @return void
      */
-    public static function checaCelular($celular)
+    public function checaCelular($celular)
     {
         // Verificando se o celular é numérico
         if (!is_numeric($celular)) {
@@ -145,7 +145,7 @@ class MensagemUtils
      * @param  mixed $celular
      * @return void
      */
-    public static function checaBlacklist($ddd, $celular)
+    public function checaBlacklist($ddd, $celular)
     {
         $telefone = $ddd . $celular;
         $url = 'https://front-test-pg.herokuapp.com/blacklist/' . $telefone;
@@ -172,7 +172,7 @@ class MensagemUtils
      * @param  mixed $horario
      * @return void
      */
-    public static function checaHorarioAgendamento($horario)
+    public function checaHorarioAgendamento($horario)
     {
         $horario_envio = new DateTime($horario);
         $horario_limite = new DateTime('19:59:59');
@@ -194,7 +194,7 @@ class MensagemUtils
      * @param  mixed $mensagem
      * @return void
      */
-    public static function checaMensagem($mensagem)
+    public function checaMensagem($mensagem)
     {
         if (strlen($mensagem) > 140) {
             return false;
@@ -210,7 +210,7 @@ class MensagemUtils
      * @param  mixed $linhas
      * @return void
      */
-    public static function ordenaUnificaMensagens($linhas)
+    public function ordenaUnificaMensagens($linhas)
     {
         $resultado = [];
         $chaves = [];
@@ -241,7 +241,7 @@ class MensagemUtils
      * @param  mixed $linhas
      * @return void
      */
-    public static function converteMensagens($linhas)
+    public function converteMensagens($linhas)
     {
         $resultado = [];
 
