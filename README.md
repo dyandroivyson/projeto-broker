@@ -2,6 +2,7 @@
 Script PHP para ler, manipular e retornar arquivos com mensagens de envio para operadoras de celular.
 
 O arquivo de entrada tem o seguinte layout:
+
 IDMENSAGEM;DDD;CELULAR;OPERADORA;HORARIO_ENVIO;MENSAGEM
 
 Exemplo:
@@ -13,6 +14,7 @@ Exemplo:
     d81b2696-8b62-4b8b-af82-586ce0875ebc;21;983522711;TIM;16:42:48;sit amet eros suspendisse accumsan tortor quis turpis sed ante
     
 O arquivo de saída gerado tem o seguinte layout:
+
 IDMENSAGEM;IDBROKER
 
 Exemplo:
@@ -21,7 +23,7 @@ Exemplo:
     d81b2696-8b62-4b8b-af82-586ce0875ebc;1
     
 ## Como executar
-Adicionei um ou mais arquivos no formato CSV dentro do diretório "1_recebidos". Após isso, basta executar o arquivo index.php pelo navegador ou diretamente pelo terminal. Para arquivos grandes ou vários arquivos, é recomendado o uso pelo terminal devido à possíveis limitações do php.ini.
+Adicione um ou mais arquivos no formato CSV dentro do diretório "1_recebidos". Após isso, basta executar o arquivo index.php pelo navegador ou diretamente pelo terminal. Para arquivos grandes ou vários arquivos, é recomendado o uso pelo terminal devido à possíveis limitações do php.ini.
 
 ## Sobre o desenvolvimento do projeto
 Este script foi desenvolvido utilizando a linguagem PHP em sua versão 7.2. Foi utilizado o editor Visual Studio Code em ambiente Windows 10. Para alcançar o objetivo do projeto foram utilizadas algumas bibliotecas nativas do PHP, sendo elas:
